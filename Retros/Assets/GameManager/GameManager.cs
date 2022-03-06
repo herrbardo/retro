@@ -101,10 +101,13 @@ public class GameManager : MonoBehaviour
         return  round;
     }
 
-    public void RestartFromZero()
+    public void RestartFromZero(bool reboot)
     {
         this.currentSteps = null;
-        TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
+        this.round = 1;
+
+        if(reboot)
+            TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
     }
 
     void InitRoundValues()
@@ -116,5 +119,10 @@ public class GameManager : MonoBehaviour
     void TransitionFinished(TransitionMode mode)
     {
         InitRoundValues();
+    }
+
+    public int GetCurrentRound()
+    {
+        return round;
     }
 }

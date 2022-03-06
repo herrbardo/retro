@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        GameManager.Instance.RestartFromZero();
+        GameManager.Instance.RestartFromZero(true);
     }
 
     public void SetTime(int time)
@@ -68,6 +68,7 @@ public class UIManager : MonoBehaviour
     public void ExitToMenu()
     {
         TransitionEvents.GetInstance().OnTransitionToScene("MainMenu");
+        GameManager.Instance.RestartFromZero(false);
         GlobalDJ.Instance.PlaySong(0);
     }
 }
