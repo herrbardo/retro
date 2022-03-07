@@ -67,8 +67,7 @@ public class UIManager : MonoBehaviour
 
     public void ExitToMenu()
     {
-        TransitionEvents.GetInstance().OnTransitionToScene("MainMenu");
-        GameManager.Instance.RestartFromZero(false);
-        GlobalDJ.Instance.PlaySong(0);
+        TransitionEvents.GetInstance().OnTransitionToScene("MainMenu");        
+        GameEvents.GetInstance().OnGameExited();
     }
 }

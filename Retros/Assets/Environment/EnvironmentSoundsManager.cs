@@ -17,16 +17,28 @@ public class EnvironmentSoundsManager : MonoBehaviour
         }
         else
             Destroy(this.gameObject);
+
+        GameEvents.GetInstance().GameExited += GameExited;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.GetInstance().GameExited -= GameExited;
     }
 
     void Start()
     {
-        //TOOD Quizas haya que desactivar el viento cuando el jugador sale del juego.
+        
     }
 
     
     void Update()
     {
         
+    }
+
+    void GameExited()
+    {
+        Destroy(this.gameObject);
     }
 }

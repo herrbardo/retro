@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal += PlayerHasReachedEnemyPortal;
         GameEvents.GetInstance().EnemyHasReachedPlayerPortal += EnemyHasReachedPlayerPortal;
+        GameEvents.GetInstance().GameExited += GameExited;
         TransitionEvents.GetInstance().TransitionFinished += TransitionFinished;
         GlobalDJ.Instance.PlaySong(1);
     }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal -= PlayerHasReachedEnemyPortal;
         GameEvents.GetInstance().EnemyHasReachedPlayerPortal -= EnemyHasReachedPlayerPortal;
+        GameEvents.GetInstance().GameExited -= GameExited;
         TransitionEvents.GetInstance().TransitionFinished -= TransitionFinished;
     }
 
@@ -124,5 +126,17 @@ public class GameManager : MonoBehaviour
     public int GetCurrentRound()
     {
         return round;
+    }
+
+    void GameExited()
+    {
+        RestartFromZero(false);
+        GlobalDJ.Instance.PlaySong(0);
+        Invoke("FinallyDie", .1f);
+    }
+
+    void FinallyDie()
+    {
+        Destroy(this.gameObject);
     }
 }
