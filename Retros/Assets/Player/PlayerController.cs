@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Renderer BodyRenderer;
 
     [SerializeField] float gravity;
+    [SerializeField] Color EnemyAuraColor;
+    [SerializeField] ParticleSystem AuraPlayer;
 
     public bool IsEnemy;
     public bool IsMoving;
@@ -58,6 +60,11 @@ public class PlayerController : MonoBehaviour
             Material[] mats = BodyRenderer.materials;
             mats[0] = EnemyMaterial;
             BodyRenderer.materials = mats;
+
+            var particleSettings = AuraPlayer.main;
+            particleSettings.startColor = new Color(EnemyAuraColor.r, EnemyAuraColor.g, EnemyAuraColor.b, EnemyAuraColor.a);
+            //AuraPlayer.enableEmission = false;
+            //AuraPlayer.Stop();
         }
     }
 
