@@ -28,6 +28,10 @@ public class Weapon : MonoBehaviour
         BulletMovement bulletMovement = clone.GetComponent<BulletMovement>();
         bulletMovement.TargetTransform = AimPoint;
         bulletMovement.OwnerTag = Player.tag;
+        
+        PlayerController playerController = Player.GetComponent<PlayerController>();
+        BulletManager bulletManager = clone.GetComponent<BulletManager>(); 
+        bulletManager.IsEnemy = playerController.IsEnemy;
     }
 
     public void StopFiring()

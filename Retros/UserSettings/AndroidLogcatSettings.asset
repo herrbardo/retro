@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "ZY326N6RNH",
         "name": "com.HerrBardo.Retros",
-        "processId": 26266,
+        "processId": 28926,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -84,6 +84,12 @@
             "deviceId": "ZY326N6RNH",
             "name": "com.HerrBardo.Retros",
             "processId": 26266,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY326N6RNH",
+            "name": "com.HerrBardo.Retros",
+            "processId": 28926,
             "exited": false
         }
     ],

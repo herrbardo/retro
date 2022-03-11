@@ -28,12 +28,18 @@ public class GlobalDJ : MonoBehaviour
         
         audioSource = GetComponent<AudioSource>();
         DontDestroyOnLoad (gameObject);
+        UIEvents.GetInstance().UIButtonPressed += UIButtonPressed;
     }
 
     void Start()
     {
         originalVolume = audioSource.volume;
         CheckAudioSettings();
+    }
+
+    private void OnDestroy()
+    {
+        UIEvents.GetInstance().UIButtonPressed -= UIButtonPressed;
     }
 
     public void PlaySong(int indexSong)
@@ -57,11 +63,11 @@ public class GlobalDJ : MonoBehaviour
         StartCoroutine(AudioHelper.StartFade(this.audioSource, 5, originalVolume));
     }
 
-    void UICommand_Button(UICommand command, bool value)
+    void UIButtonPressed(string buttonName, bool value)
     {
-        if(command == UICommand.BtnSound)
+        if(buttonName == "BtnSound")
             SwitchVolume("EffectsVolume", EffectsMaxVolume, EffectsMinVolume, value);
-        else if(command == UICommand.BtnMusic)
+        else if(buttonName == "BtnMusic")
             SwitchVolume("MusicVolume", MusicMaxVolume, MusicMinVolume, value);
     }
 

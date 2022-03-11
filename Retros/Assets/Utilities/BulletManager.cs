@@ -23,14 +23,19 @@ public class BulletManager : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         string otherTag = other.gameObject.tag;
-        PlayerController otherPlayer = other.gameObject.GetComponent<PlayerController>();
 
-        if((otherTag == "Player" && IsEnemy && !otherPlayer.IsEnemy)
-        || (otherTag == "Enemy" && !IsEnemy && otherPlayer.IsEnemy)
-        || (otherTag == "Environment"))
-        {
+        if(otherTag == "Environment")
             Die();
-            Instantiate(EnergyExplosionPrefab, this.transform.position, Quaternion.identity);
+        else
+        {
+            PlayerController otherPlayer = other.gameObject.GetComponent<PlayerController>();
+            if(otherPlayer == null)
+                return;
+
+            if(IsEnemy && !otherPlayer.IsEnemy)
+                Die();
+            else if(!IsEnemy && otherPlayer.IsEnemy)
+                Die();
         }
     }
 
@@ -38,16 +43,15 @@ public class BulletManager : MonoBehaviour
     {
         if(isDead)
             return;
-        
+        isDead = true;
+        Instantiate(EnergyExplosionPrefab, this.transform.position, Quaternion.identity);
+
         if(bulletRigidbody != null)
             bulletRigidbody.velocity = Vector3.zero;
         if(sphereCollider != null)
             sphereCollider.enabled = false;
         
-        isDead = true;
         for (int i = 1; i < Systems.Length; i++)
-        {
             Destroy(Systems[i].gameObject);
-        }
     }
 }

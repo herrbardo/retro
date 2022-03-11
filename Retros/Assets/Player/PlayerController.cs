@@ -63,8 +63,6 @@ public class PlayerController : MonoBehaviour
 
             var particleSettings = AuraPlayer.main;
             particleSettings.startColor = new Color(EnemyAuraColor.r, EnemyAuraColor.g, EnemyAuraColor.b, EnemyAuraColor.a);
-            //AuraPlayer.enableEmission = false;
-            //AuraPlayer.Stop();
         }
     }
 
@@ -190,6 +188,10 @@ public class PlayerController : MonoBehaviour
         this.canMove = false;
         this.canShoot = false;
         playerRigidbody.isKinematic = true;
+        AuraPlayer.Stop();
+
+        if(!IsEnemy)
+            GameEvents.GetInstance().OnPlayerHasBeenKilled();
     }
 
     void PlayerWin(Queue<Step> steps)

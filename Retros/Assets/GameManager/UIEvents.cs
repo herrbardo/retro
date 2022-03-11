@@ -21,9 +21,11 @@ public class UIEvents
 
     public delegate void CentralMessagePostedDelegate(string message, bool hideAfterAWhile);
     public delegate void UpdateRoundTimeDelegate(int time);
+    public delegate void UIButtonPressedDelegate(string name, bool value);
 
     public event CentralMessagePostedDelegate CentralMessagePosted;
     public event UpdateRoundTimeDelegate UpdateRoundTime;
+    public event UIButtonPressedDelegate UIButtonPressed;
 
     public void OnCentralMessagePosted(string message, bool hideAfterAWhile)
     {
@@ -35,5 +37,11 @@ public class UIEvents
     {
         if(UpdateRoundTime != null)
             UpdateRoundTime(time);
+    }
+
+    public void OnUIButtonPressed(string name, bool value)
+    {
+        if(UIButtonPressed != null)
+            UIButtonPressed(name, value);
     }
 }

@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
         }
         catch(LanguageCodeDoesNotExistsException ex)
         {
-            Debug.Log(ex.Message);
+            
         }
     }
 }

@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectsMaxVolume: 0
-  EffectsMinVolume: 0
+  EffectsMinVolume: -40
   MusicMaxVolume: 0
-  MusicMinVolume: 0
+  MusicMinVolume: -40
   GlobalMixer: {fileID: 24100000, guid: c9532c4db096fd44e8d67b28577ecb14, type: 2}
   TrackList:
   - {fileID: 8300000, guid: 00f6bf0db41611a43b4f00e6ab02f8a3, type: 3}
@@ -68,7 +68,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

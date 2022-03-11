@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] int MaxRoundTime;
+    [SerializeField] float TimeToRestartAfterDie;
 
     int round;
     float roundTime;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal += PlayerHasReachedEnemyPortal;
         GameEvents.GetInstance().EnemyHasReachedPlayerPortal += EnemyHasReachedPlayerPortal;
         GameEvents.GetInstance().GameExited += GameExited;
+        GameEvents.GetInstance().PlayerHasBeenKilled += PlayerHasBeenKilled;
         TransitionEvents.GetInstance().TransitionFinished += TransitionFinished;
         GlobalDJ.Instance.PlaySong(1);
     }
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal -= PlayerHasReachedEnemyPortal;
         GameEvents.GetInstance().EnemyHasReachedPlayerPortal -= EnemyHasReachedPlayerPortal;
         GameEvents.GetInstance().GameExited -= GameExited;
+        GameEvents.GetInstance().PlayerHasBeenKilled -= PlayerHasBeenKilled;
         TransitionEvents.GetInstance().TransitionFinished -= TransitionFinished;
     }
 
@@ -138,5 +141,18 @@ public class GameManager : MonoBehaviour
     void FinallyDie()
     {
         Destroy(this.gameObject);
+    }
+
+    void PlayerHasBeenKilled()
+    {
+        string message = LanguageManager.Instance.GetValueFor("YOU_DEAD");
+        UIEvents.GetInstance().OnCentralMessagePosted(message, false);
+
+        Invoke("AfterDeath", TimeToRestartAfterDie);
+    }
+
+    void AfterDeath()
+    {
+        RestartFromZero(true);
     }
 }
