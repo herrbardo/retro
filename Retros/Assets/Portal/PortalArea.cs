@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class PortalArea : MonoBehaviour
 {
-    public bool IsEnemy;
+    [SerializeField] public bool IsEnemy;
+    [SerializeField] public GameObject Portal;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

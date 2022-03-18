@@ -29,9 +29,9 @@ public class Weapon : MonoBehaviour
         bulletMovement.TargetTransform = AimPoint;
         bulletMovement.OwnerTag = Player.tag;
         
-        PlayerController playerController = Player.GetComponent<PlayerController>();
+        PlayerStateManager playerManager = Player.GetComponent<PlayerStateManager>();
         BulletManager bulletManager = clone.GetComponent<BulletManager>(); 
-        bulletManager.IsEnemy = playerController.IsEnemy;
+        bulletManager.IsEnemy = playerManager.CurrentState is PlayerStateEnemy;
     }
 
     public void StopFiring()

@@ -155,11 +155,13 @@ public class PlayerController : MonoBehaviour
             {
                 LockPlayer();
                 GameEvents.GetInstance().OnPlayerHasReachedEnemyPortal(this.stepsRecord);
+                animator.SetBool("isFloating", true);
             }
             else if(IsEnemy && !portalArea.IsEnemy)
             {
                 LockPlayer();
                 GameEvents.GetInstance().OnEnemyHasReachedPlayerPortal();
+                animator.SetBool("isFloating", true);
             }
         }
         else if(other.gameObject.tag == "Bullet")

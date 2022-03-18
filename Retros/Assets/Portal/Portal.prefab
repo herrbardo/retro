@@ -464,9 +464,10 @@ GameObject:
   - component: {fileID: 851824622870136307}
   - component: {fileID: 2551463938347848792}
   - component: {fileID: 2302844628088451692}
+  - component: {fileID: 338832596916265087}
   m_Layer: 0
   m_Name: GLTFNode_3
-  m_TagString: Untagged
+  m_TagString: PortalDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,8 +479,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2830413179046965800}
-  m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: 0, w: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.119999915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 272483759000487508}
@@ -534,6 +535,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &338832596916265087
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830413179046965800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 58a0141535da5504f98fe4e51b1894e5, type: 2}
 --- !u!1 &3342384979544552272
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045380453876296048}
+  - component: {fileID: 852592090427417688}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -565,6 +581,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852592090427417688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3342384979544552272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f121d937b9457ea4d9a117eef561142e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PortalDoor: {fileID: 851824622870136307}
+  RotationsPerMinute: 10
 --- !u!1 &3618323196209589237
 GameObject:
   m_ObjectHideFlags: 0

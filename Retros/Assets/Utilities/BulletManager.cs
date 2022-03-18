@@ -27,14 +27,11 @@ public class BulletManager : MonoBehaviour
         if(otherTag == "Environment")
             Die();
         else
-        {
-            PlayerController otherPlayer = other.gameObject.GetComponent<PlayerController>();
-            if(otherPlayer == null)
+        {            
+            PlayerStateManager playerManager = other.gameObject.GetComponent<PlayerStateManager>();
+            if(playerManager == null)
                 return;
-
-            if(IsEnemy && !otherPlayer.IsEnemy)
-                Die();
-            else if(!IsEnemy && otherPlayer.IsEnemy)
+            if((IsEnemy && playerManager.CurrentState is PlayerStateHuman) || (!IsEnemy && playerManager.CurrentState is PlayerStateEnemy))
                 Die();
         }
     }

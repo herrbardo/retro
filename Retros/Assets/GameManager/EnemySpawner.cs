@@ -19,8 +19,8 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject clone = Instantiate(PlayerPrefab, this.transform.position, Quaternion.identity);
         clone.tag = "Enemy";
-        PlayerController controller = clone.GetComponent<PlayerController>();
-        controller.IsEnemy = true;
-        controller.SetSteps(this.currentSteps);
+        PlayerStateManager playerStateManager = clone.GetComponent<PlayerStateManager>();
+        playerStateManager.SetState(new PlayerStateEnemy());
+        playerStateManager.StepsRecord = this.currentSteps;
     }
 }

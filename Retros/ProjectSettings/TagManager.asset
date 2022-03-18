@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Portal
   - Environment
+  - PortalDoor
   layers:
   - Default
   - TransparentFX

@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
         GameEvents.GetInstance().GameExited += GameExited;
         GameEvents.GetInstance().PlayerHasBeenKilled += PlayerHasBeenKilled;
         TransitionEvents.GetInstance().TransitionFinished += TransitionFinished;
-        GlobalDJ.Instance.PlaySong(1);
+
+        if(GlobalDJ.Instance != null)
+            GlobalDJ.Instance.PlaySong(1);
     }
 
     private void OnDestroy()
