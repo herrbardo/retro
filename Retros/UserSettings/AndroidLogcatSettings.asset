@@ -3,93 +3,45 @@
     "m_SelectedPackage": {
         "deviceId": "ZY326N6RNH",
         "name": "com.HerrBardo.Retros",
-        "processId": 28926,
+        "processId": 2695,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "ZY326N6RNH",
-            "name": "com.DefaultCompany.Retros",
-            "processId": 25194,
-            "exited": true
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.DefaultCompany.Retros",
-            "processId": 23952,
-            "exited": true
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.DefaultCompany.Retros",
-            "processId": 25026,
-            "exited": true
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.DefaultCompany.Retros",
-            "processId": 29194,
-            "exited": true
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.DefaultCompany.Retros",
-            "processId": 25148,
-            "exited": true
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.motorola.launcher3",
-            "processId": 5225,
-            "exited": false
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.HerrBardo.Retros",
-            "processId": 3103,
-            "exited": false
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.HerrBardo.Retros",
-            "processId": 29998,
-            "exited": false
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.HerrBardo.Retros",
-            "processId": 28538,
-            "exited": false
-        },
-        {
-            "deviceId": "ZY326N6RNH",
-            "name": "com.HerrBardo.Retros",
-            "processId": 10050,
-            "exited": false
-        },
-        {
-            "deviceId": "ZY326N6RNH",
             "name": "com.HerrBardo.Retros",
             "processId": 10901,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ZY326N6RNH",
             "name": "com.HerrBardo.Retros",
             "processId": 15721,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ZY326N6RNH",
             "name": "com.HerrBardo.Retros",
             "processId": 26266,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ZY326N6RNH",
             "name": "com.HerrBardo.Retros",
             "processId": 28926,
+            "exited": true
+        },
+        {
+            "deviceId": "ZY326N6RNH",
+            "name": "com.motorola.launcher3",
+            "processId": 5439,
+            "exited": true
+        },
+        {
+            "deviceId": "ZY326N6RNH",
+            "name": "com.HerrBardo.Retros",
+            "processId": 2695,
             "exited": false
         }
     ],
