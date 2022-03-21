@@ -13,10 +13,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject CentralMessageContainer;
     [SerializeField] GameObject UIMenuCanvas;
 
+    bool canSwitchMenuView;
+
     private void Awake()
     {
         UIEvents.GetInstance().CentralMessagePosted += MessagePosted;
         UIEvents.GetInstance().UpdateRoundTime += SetTime;
+        GameEvents.GetInstance().PlayerHasReachedEnemyPortal += PlayerWon;
+        GameEvents.GetInstance().EnemyHasReachedPlayerPortal += EnemyWon;
+        canSwitchMenuView = true;
     }
 
     private void OnDestroy()
@@ -50,6 +55,7 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.RestartFromZero(true);
+        SwitchPause(false);
     }
 
     public void SetTime(int time)
@@ -59,15 +65,43 @@ public class UIManager : MonoBehaviour
 
     public void SwitchMenuView()
     {
+        if(!canSwitchMenuView)
+            return;
+
         if(UIMenuCanvas.active)
+        {
             UIMenuCanvas.SetActive(false);
+            SwitchPause(false);
+        }
         else
+        {
             UIMenuCanvas.SetActive(true);
+            SwitchPause(true);
+        }
     }
 
     public void ExitToMenu()
     {
         TransitionEvents.GetInstance().OnTransitionToScene("MainMenu");        
         GameEvents.GetInstance().OnGameExited();
+        SwitchPause(false);
+    }
+
+    void PlayerWon(Queue<Step> stepsRecord)
+    {
+        this.canSwitchMenuView = false;
+    }
+
+    void EnemyWon()
+    {
+        this.canSwitchMenuView = false;
+    }
+
+    void SwitchPause(bool pause)
+    {
+        if(pause)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }
