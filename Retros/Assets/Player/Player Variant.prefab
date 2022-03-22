@@ -292,7 +292,8 @@ AudioSource:
   m_GameObject: {fileID: 4017313504294702836}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2203674121395625463, guid: c9532c4db096fd44e8d67b28577ecb14,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5557,6 +5558,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1933010676296708532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624738173002969991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069af8d36a45ad44fb7884371406ea40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootSounds: {fileID: 5002300448527635357}
 --- !u!114 &6546598473716303233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5578,19 +5592,6 @@ MonoBehaviour:
   RotationSpeed: 15
   EnergyWavePrefab: {fileID: 1049032470846805206, guid: d6459c540b620ec4b86dda78085a5cef,
     type: 3}
---- !u!114 &1933010676296708532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624738173002969991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069af8d36a45ad44fb7884371406ea40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FootSounds: {fileID: 5002300448527635357}
 --- !u!1001 &2931166779757075411
 PrefabInstance:
   m_ObjectHideFlags: 0

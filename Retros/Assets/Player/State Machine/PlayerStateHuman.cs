@@ -75,7 +75,7 @@ public class PlayerStateHuman : PlayerStateBase
                 Context.TravelToPortal(portalExtended.PortalDoor.transform);
             }
         }
-
+        
         base.OnCollisionEnter(other);
     }
 

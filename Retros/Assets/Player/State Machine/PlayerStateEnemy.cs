@@ -57,7 +57,26 @@ public class PlayerStateEnemy : PlayerStateBase
             }
         }
 
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player")
+        {
+            Collider myCollider = Context.GetComponent<Collider>();
+            Collider otherCollider = other.gameObject.GetComponent<Collider>();
+            Physics.IgnoreCollision(otherCollider, myCollider);
+        }
+
         base.OnCollisionEnter(other);
+    }
+
+    public override void OnCollisionExit(Collision other)
+    {
+        if(other.gameObject.tag == "Portal")
+        {
+            PortalArea portalArea = other.gameObject.GetComponent<PortalArea>();
+            if(portalArea.IsEnemy)
+                GameEvents.GetInstance().OnEnemyLeftPortal();
+        }
+        
+        base.OnCollisionExit(other);
     }
 
     private void RetrieveStep()

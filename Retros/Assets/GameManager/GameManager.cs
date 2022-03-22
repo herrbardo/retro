@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     int round;
     float roundTime;
     bool roundFinished;
-    Queue<Step> currentSteps;
+    List<Queue<Step>> stepsByRound;
 
     private void Awake()
     {
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         GameEvents.GetInstance().GameExited += GameExited;
         GameEvents.GetInstance().PlayerHasBeenKilled += PlayerHasBeenKilled;
         TransitionEvents.GetInstance().TransitionFinished += TransitionFinished;
+        this.stepsByRound = new List<Queue<Step>>();
 
         if(GlobalDJ.Instance != null)
             GlobalDJ.Instance.PlaySong(1);
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
     void PlayerHasReachedEnemyPortal(Queue<Step> stepsRecord)
     {
         roundFinished = true;
-        this.currentSteps = stepsRecord;
+        this.stepsByRound.Add(stepsRecord);
         round++;
         string message = LanguageManager.Instance.GetValueFor("MSG_VICTORY");
         UIEvents.GetInstance().OnCentralMessagePosted(message, false);
@@ -83,6 +84,8 @@ public class GameManager : MonoBehaviour
         roundFinished = true;
         string message = LanguageManager.Instance.GetValueFor("MSG_YOU_ARE_WORSE");
         UIEvents.GetInstance().OnCentralMessagePosted(message, false);
+
+        Invoke("AfterDeath", TimeToRestartAfterDie);
     }
 
     void PlayerTimeout()
@@ -98,9 +101,9 @@ public class GameManager : MonoBehaviour
         TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
     }
 
-    public Queue<Step> GetSteps()
+    public List<Queue<Step>> GetStepsByRound()
     {
-        return this.currentSteps;
+        return this.stepsByRound;
     }
 
     public int GetRound()
@@ -110,7 +113,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartFromZero(bool reboot)
     {
-        this.currentSteps = null;
         this.round = 1;
 
         if(reboot)

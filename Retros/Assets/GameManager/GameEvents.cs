@@ -24,6 +24,7 @@ public class GameEvents
     public delegate void GameExitedDelegate();
     public delegate void GameStartedDelegate();
     public delegate void PlayerHasBeenKilledDelegate();
+    public delegate void EnemyLeftPortalDelegate();
 
     public event PlayerHasReachedEnemyPortalDelegate PlayerHasReachedEnemyPortal;
     public event EnemyHasReachedPlayerPortalDelegate EnemyHasReachedPlayerPortal;
@@ -31,6 +32,7 @@ public class GameEvents
     public event GameExitedDelegate GameExited;
     public event GameStartedDelegate GameStarted;
     public event PlayerHasBeenKilledDelegate PlayerHasBeenKilled;
+    public event EnemyLeftPortalDelegate EnemyLeftPortal;
 
     public void OnPlayerHasReachedEnemyPortal(Queue<Step> stepsRecord)
     {
@@ -66,5 +68,11 @@ public class GameEvents
     {
         if(PlayerHasBeenKilled != null)
             PlayerHasBeenKilled();
+    }
+
+    public void OnEnemyLeftPortal()
+    {
+        if(EnemyLeftPortal != null)
+            EnemyLeftPortal();
     }
 }

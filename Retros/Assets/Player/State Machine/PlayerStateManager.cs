@@ -15,6 +15,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] public float MovementSpeed;
     [SerializeField] public float RotationSpeed;
     [SerializeField] GameObject EnergyWavePrefab;
+    [SerializeField] bool Inmortal;
     [NonSerialized] public bool IsMoving;
     [NonSerialized] public Animator Animator;
     [NonSerialized] public Rigidbody PlayerRigidbody;
@@ -56,6 +57,11 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnCollisionEnter(other);
     }
 
+    void OnCollisionExit(Collision other)
+    {
+        currentState.OnCollisionExit(other);
+    }
+
     private void OnMove(InputValue movementValue)
     {   
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -86,6 +92,9 @@ public class PlayerStateManager : MonoBehaviour
 
     public void Die()
     {
+        if(Inmortal)
+            return;
+
         SetState(new PlayerStateDead(this));
     }
 

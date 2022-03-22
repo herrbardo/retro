@@ -35,6 +35,11 @@ public abstract class PlayerStateBase
         }
     }
 
+    public virtual void OnCollisionExit(Collision other)
+    {
+        
+    }
+
     public abstract void EnterState();
     public abstract void ExitState();
 
