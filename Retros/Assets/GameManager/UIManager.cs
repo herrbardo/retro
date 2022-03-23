@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         string roundWord = LanguageManager.Instance.GetValueFor("ROUND");
-        RoundText.text = roundWord + " " + GameManager.Instance.GetRound();
+        RoundText.text = roundWord + " " + GameManager.Instance.GetRound() + " / " + GameManager.Instance.FinalRound;
         CentralMessageContainer.gameObject.SetActive(false);
         UIMenuCanvas.SetActive(false);
     }

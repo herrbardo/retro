@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int MaxRoundTime;
     [SerializeField] float TimeToRestartAfterDie;
+    [SerializeField] public int FinalRound;
 
     int round;
     float roundTime;
@@ -76,7 +77,9 @@ public class GameManager : MonoBehaviour
         round++;
         string message = LanguageManager.Instance.GetValueFor("MSG_VICTORY");
         UIEvents.GetInstance().OnCentralMessagePosted(message, false);
-        Invoke("Restart", 3f);
+
+        if(this.GetCurrentRound() < FinalRound)
+            Invoke("Restart", 3f);
     }
 
     void EnemyHasReachedPlayerPortal()

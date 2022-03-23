@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             Queue<Step> previousRound = stepsByRound[stepsByRound.Count - 1];
             this.stepsToSpawn.Enqueue(previousRound);
         }
-        else if(currentRound > 5 && currentRound <=9)
+        else if(currentRound > 5 && currentRound <= 9)
         {
             Queue<Step> previousRound = stepsByRound[stepsByRound.Count - 1];
             Queue<Step> previousToPreviousRound = stepsByRound[stepsByRound.Count - 2];
