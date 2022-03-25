@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
 
     void ShowTutorialMessages()
     {
-        int round = GameManager.Instance.GetCurrentRound();
+        int round = GameManager.Instance.CurrentRound;
         string codeTutorial = "TUTORIAL_" + round;
 
         try

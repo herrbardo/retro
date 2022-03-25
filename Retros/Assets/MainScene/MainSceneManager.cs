@@ -7,7 +7,7 @@ public class MainSceneManager : MonoBehaviour
 {
     public void Play()
     {
-        TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
+        TransitionEvents.GetInstance().OnTransitionToScene("CloudCity");
     }
 
     public void Exit()

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 54018a4529e68cb4ca026b31535a7011
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/CloudCity.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MedievalFields.unity
+    guid: d078184108f54cf4bbf2f8b82e8feebd
   m_configObjects: {}

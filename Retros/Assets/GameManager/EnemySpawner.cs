@@ -33,9 +33,9 @@ public class EnemySpawner : MonoBehaviour
         if(stepsByRound.Count == 0)
             return;
 
-        int currentRound = GameManager.Instance.GetCurrentRound();
+        int currentRound = GameManager.Instance.CurrentRound;
 
-        if(currentRound > 1 && currentRound <= 5)
+        if((currentRound > 1 && currentRound <= 5) || (currentRound > 11 && currentRound <= 15))
         {
             Queue<Step> previousRound = stepsByRound[stepsByRound.Count - 1];
             this.stepsToSpawn.Enqueue(previousRound);

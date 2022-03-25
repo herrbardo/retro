@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] int MaxRoundTime;
     [SerializeField] float TimeToRestartAfterDie;
     [SerializeField] public int FinalRound;
+    [SerializeField] public int StartRound;
+    [NonSerialized] public int CurrentRound;
 
-    int round;
     float roundTime;
     bool roundFinished;
     List<Queue<Step>> stepsByRound;
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            this.round = 1;
+            CurrentRound = StartRound;
             DontDestroyOnLoad(this.gameObject);
             InitRoundValues();
         }
@@ -74,11 +76,11 @@ public class GameManager : MonoBehaviour
     {
         roundFinished = true;
         this.stepsByRound.Add(stepsRecord);
-        round++;
+        CurrentRound++;
         string message = LanguageManager.Instance.GetValueFor("MSG_VICTORY");
         UIEvents.GetInstance().OnCentralMessagePosted(message, false);
 
-        if(this.GetCurrentRound() < FinalRound)
+        if(CurrentRound < FinalRound)
             Invoke("Restart", 3f);
     }
 
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     void Restart()
     {
-        TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
+        TransitionEvents.GetInstance().OnTransitionToScene(GetSceneName());
     }
 
     public List<Queue<Step>> GetStepsByRound()
@@ -109,17 +111,12 @@ public class GameManager : MonoBehaviour
         return this.stepsByRound;
     }
 
-    public int GetRound()
-    {
-        return  round;
-    }
-
     public void RestartFromZero(bool reboot)
     {
-        this.round = 1;
+        CurrentRound = 1;
 
         if(reboot)
-            TransitionEvents.GetInstance().OnTransitionToScene("SampleScene");
+            TransitionEvents.GetInstance().OnTransitionToScene(GetSceneName());
     }
 
     void InitRoundValues()
@@ -131,11 +128,6 @@ public class GameManager : MonoBehaviour
     void TransitionFinished(TransitionMode mode)
     {
         InitRoundValues();
-    }
-
-    public int GetCurrentRound()
-    {
-        return round;
     }
 
     void GameExited()
@@ -161,5 +153,13 @@ public class GameManager : MonoBehaviour
     void AfterDeath()
     {
         RestartFromZero(true);
+    }
+
+    string GetSceneName()
+    {
+        if(CurrentRound > 10 && CurrentRound <= 20)
+            return "MedievalFields";
+        else
+            return "CloudCity";
     }
 }
