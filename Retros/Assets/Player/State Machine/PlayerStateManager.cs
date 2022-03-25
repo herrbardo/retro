@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 using System;
 
 public class PlayerStateManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class PlayerStateManager : MonoBehaviour
     [NonSerialized] public bool IsMoving;
     [NonSerialized] public Animator Animator;
     [NonSerialized] public Rigidbody PlayerRigidbody;
+    [NonSerialized] public Transform PlayerPortalArea;
+    [NonSerialized] public Transform PlayerPrevPortalArea;
+    [NonSerialized] public NavMeshAgent NavMeshAgent;
 
     PlayerStateBase currentState;
     
@@ -33,6 +37,7 @@ public class PlayerStateManager : MonoBehaviour
     void Awake()
     {
         PlayerRigidbody = GetComponent<Rigidbody>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
         currentState.Awake();
     }
 
@@ -60,6 +65,11 @@ public class PlayerStateManager : MonoBehaviour
     void OnCollisionExit(Collision other)
     {
         currentState.OnCollisionExit(other);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        currentState.OnTriggerEnter(other);
     }
 
     private void OnMove(InputValue movementValue)
@@ -112,5 +122,10 @@ public class PlayerStateManager : MonoBehaviour
     void FinallyDissapear()
     {
         Destroy(this.gameObject);
+    }
+
+    public void EnableAutomaticRun()
+    {
+        SetState(new PlayerStateAutomated());
     }
 }

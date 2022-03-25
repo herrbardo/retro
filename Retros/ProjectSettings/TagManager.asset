@@ -12,6 +12,7 @@ TagManager:
   - Portal
   - Environment
   - PortalDoor
+  - PrevPortal
   layers:
   - Default
   - TransparentFX

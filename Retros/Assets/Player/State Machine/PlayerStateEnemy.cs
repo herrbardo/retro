@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerStateEnemy : PlayerStateBase
 {
     bool methodsSubscribed;
+    bool active;
 
     public override void Awake()
     {
         base.Awake();
-        Susbscribe();
+        Susbscribe();        
     }
 
     public override void OnDestroy()
@@ -26,11 +27,14 @@ public class PlayerStateEnemy : PlayerStateBase
 
         var particleSettings = Context.AuraPlayer.main;
         particleSettings.startColor = new Color(Context.EnemyAuraColor.r, Context.EnemyAuraColor.g, Context.EnemyAuraColor.b, Context.EnemyAuraColor.a);
+
+        Context.StartCoroutine(CheckIfIamStucked());
     }
 
     public override void EnterState()
     {
         Susbscribe();
+        Context.NavMeshAgent.enabled = false;
     }
 
     public override void ExitState()
@@ -81,8 +85,13 @@ public class PlayerStateEnemy : PlayerStateBase
 
     private void RetrieveStep()
     {
-        if(Context.StepsRecord == null || Context.StepsRecord.Count == 0)
+        if(Context.StepsRecord == null)
             return;
+        if(Context.StepsRecord.Count == 0)
+        {
+            Context.EnableAutomaticRun();
+            return;
+        }
 
         Step step = Context.StepsRecord.Dequeue();
         movementX = -step.X;
@@ -104,6 +113,7 @@ public class PlayerStateEnemy : PlayerStateBase
         
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal += PlayerWin;
         methodsSubscribed = true;
+        active = true;
     }
 
     void Unsusbcribe()
@@ -113,5 +123,25 @@ public class PlayerStateEnemy : PlayerStateBase
 
         GameEvents.GetInstance().PlayerHasReachedEnemyPortal -= PlayerWin;
         methodsSubscribed = false;
+        active = false;
+    }
+
+    IEnumerator CheckIfIamStucked()
+    {
+        Vector3 previousPosition = Context.transform.position;
+
+        while(active)
+        {
+            yield return new WaitForSeconds(2);
+
+            float diffX = previousPosition.x - Context.transform.position.x;
+            float diffZ = previousPosition.z - Context.transform.position.z;
+            if(Context.Animator.GetBool("isRunning") && diffX < 1 && diffZ < 1)
+                Context.EnableAutomaticRun();
+            else
+                previousPosition = Context.transform.position;
+        }
+
+        yield break;
     }
 }

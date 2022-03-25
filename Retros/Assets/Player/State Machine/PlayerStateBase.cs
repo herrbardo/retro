@@ -40,6 +40,11 @@ public abstract class PlayerStateBase
         
     }
 
+    public virtual void OnTriggerEnter(Collider other)
+    {
+
+    }
+
     public abstract void EnterState();
     public abstract void ExitState();
 

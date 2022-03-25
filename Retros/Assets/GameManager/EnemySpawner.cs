@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject PlayerPrefab;
     [SerializeField] PortalArea PortalEnemyArea;
+    [SerializeField] Transform PlayerPortalArea;
+    [SerializeField] Transform PlayerPrevPortalArea;
 
     Queue<Queue<Step>> stepsToSpawn;
     bool keepCheckingCollisions;
@@ -66,6 +68,8 @@ public class EnemySpawner : MonoBehaviour
         PlayerStateManager playerStateManager = clone.GetComponent<PlayerStateManager>();
         playerStateManager.SetState(new PlayerStateEnemy());
         playerStateManager.StepsRecord = steps;
+        playerStateManager.PlayerPortalArea = this.PlayerPortalArea;
+        playerStateManager.PlayerPrevPortalArea = this.PlayerPrevPortalArea;
     }
 
     void SpawnNext()

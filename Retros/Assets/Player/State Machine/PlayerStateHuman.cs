@@ -44,7 +44,7 @@ public class PlayerStateHuman : PlayerStateBase
 
     public override void StartState()
     {
-
+        Context.NavMeshAgent.enabled = false;
     }
 
     public override void EnterState()
