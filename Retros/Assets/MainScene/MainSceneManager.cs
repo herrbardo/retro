@@ -19,4 +19,8 @@ public class MainSceneManager : MonoBehaviour
         #endif
     }
 
+    public void GoToCredits()
+    {
+        TransitionEvents.GetInstance().OnTransitionToScene("Credits");
+    }
 }

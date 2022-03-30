@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
 
         if(CurrentRound < FinalRound)
             Invoke("Restart", 3f);
+        else
+            TransitionEvents.GetInstance().OnTransitionToScene("ENDING_SCENE");
     }
 
     void EnemyHasReachedPlayerPortal()

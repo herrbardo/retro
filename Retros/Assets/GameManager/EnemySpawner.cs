@@ -14,17 +14,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        GameEvents.GetInstance().PlayerHasReachedEnemyPortal += PlayerHasReachedEnemyPortal;
         stepsToSpawn = new Queue<Queue<Step>>();
         ChooseSpawningStrategy();
     }
 
     private void Start()
     {
+        GameEvents.GetInstance().PlayerHasReachedEnemyPortal -= PlayerHasReachedEnemyPortal;
         keepCheckingCollisions = true;
         StartCoroutine(CheckIfPortalAreaIsEmpty());
     }
 
     private void OnDestroy()
+    {
+        keepCheckingCollisions = false;
+    }
+
+    void PlayerHasReachedEnemyPortal(Queue<Step> steps)
     {
         keepCheckingCollisions = false;
     }
@@ -42,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
             Queue<Step> previousRound = stepsByRound[stepsByRound.Count - 1];
             this.stepsToSpawn.Enqueue(previousRound);
         }
-        else if(currentRound > 5 && currentRound <= 9)
+        else if((currentRound > 5 && currentRound <= 9) || (currentRound > 15 && currentRound <= 19))
         {
             Queue<Step> previousRound = stepsByRound[stepsByRound.Count - 1];
             Queue<Step> previousToPreviousRound = stepsByRound[stepsByRound.Count - 2];
@@ -86,7 +93,7 @@ public class EnemySpawner : MonoBehaviour
         while(this.stepsToSpawn.Count > 0 && keepCheckingCollisions)
         {
             yield return new WaitForSeconds(3);
-            if(PortalEnemyArea.IsEmpty)
+            if(PortalEnemyArea.IsEmpty && keepCheckingCollisions)
                 SpawnNext();
         }
 

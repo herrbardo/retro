@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MedievalFields.unity
     guid: d078184108f54cf4bbf2f8b82e8feebd
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 4b07bfd5b2744c24c84f792de5cee680
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: c5d6bbae03ddffa4c812940544b932e6
   m_configObjects: {}
